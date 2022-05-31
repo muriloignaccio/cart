@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+</head>
+<body>
+  <div>
+    <% if (cart.items.length === 0) { %>
+      <h1>No products have been added to the cart yet.</h1>
+    <% } else { %>
+      <% cart.items.forEach(item => { %>
+        <div>
+          <h2>Nome: <%= item.product.name %></h2>
+          <h2>Price: <%= item.product.price %></h2>
+
+          <form action="/cart/<%= item.product.id %>/quantity/decrement?_method=PUT" method="post">
+            <button>-</button>
+          </form>
+          <span><%= item.quantity %></span>
+          <form action="/cart/<%= item.product.id %>/quantity/increment?_method=PUT" method="post">
+            <button>+</button>
+          </form>
+          <form action="/cart/<%= item.product.id %>?_method=DELETE" method="post">
+            <button>Remove from Cart</button>
+          </form>
+          <hr>
+        </div>
+      <% }) %>
+      <p>Total: <%= cart.total%></p>
+    <% } %>
+  </div>
+</body>
+</html>

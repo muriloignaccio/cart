@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+</head>
+<body>
+  <div>
+    <% products.forEach(product => { %>
+      <div>
+        <h2><%= product.name %></h2>
+        <p><%= product.description %></p>
+        <span><%= product.price %></span>
+        <a href="/products/<%= product.id %>">See details</a>
+        <form action="/cart/<%= product.id %>" method="post">
+          <button>Add to Cart</button>
+        </form>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
